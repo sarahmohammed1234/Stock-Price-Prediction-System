@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row gx-4 gx-lg-5 justify-content-center  my-3">
+
+ <div class="col-sm-6 col-lg-6">
+  <img class="pt-5" src="{{ url_for('static', filename='/images/img1.png') }} " width="100%" height="450px" alt="">
+ </div>
+ <div class="col-6 col-lg-6">
+
+  <form action="/register" method="post">
+   <h3 class="h4 mb-1 text-center">Create Account</h3>
+
+   <div class="mb-1">
+    <label for="username" class="form-label">User Name*</label>
+    <input type="text" class="form-control form-control-sm" placeholder="Insert your name" id="username" name="username" required>
+    <div id="username" class="form-text">- The name must include letters and numbers.</div>
+    <div id="username" class="form-text">- The name must be at least 6 characters long.</div>
+   </div>
+   
+   <div class="mb-1">
+    <label for="firstname" class="form-label">First Name*</label>
+    <input type="text" class="form-control form-control-sm" placeholder="Insert your first name" id="firstname" name="firstname" required>    
+   </div>
+
+   <div class="mb-1">
+    <label for="lastname" class="form-label">Last Name*</label>
+    <input type="text" class="form-control form-control-sm" placeholder="Insert your last name" id="lastname" name="lastname" required>    
+   </div>
+
+   <div class="mb-1">
+    <label for="account_email" class="form-label">Email*</label>
+    <input type="email" class="form-control form-control-sm text-start" placeholder="Insert your email" id="account_email"
+     name="email" required>
+   </div>
+
+   <div class="mb-1">
+    <label for="account_password" class="form-label">Password*</label>
+    <input type="password" class="form-control form-control-sm" placeholder="Insert the password" id="account_password"
+     name="password" required>
+   </div>
+
+   <!-- <fieldset class="mb-1">
+    <label for="gender" class="form-label">Gender</label>
+    <div class="form-check form-check-inline ">
+     <input type="radio" name="gender" class="form-check-input" id="male" checked>
+     <label class="form-check-label" for="male">Male</label>
+    </div>
+   <div class="mb-3 form-check form-check-inline">
+     <input type="radio" name="gender" class="form-check-input" id="femele">
+     <label class="form-check-label" for="femele">Femele</label>
+    </div> 
+   </fieldset>-->
+
+   {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+   <p style="color :red">{{ message }}</p>
+   
+   {% endfor %} {% endif %} {% endwith %}
+
+   <div class="mb-1 text-center">
+    <input type="submit" value="Sign Up" name="register" class="btn btn-primary btn-sm">
+   </div>
+
+  </form>
+
+  <hr>
+  <div class="text-center">
+      <a class="small" href="/forgotPassword">Forgot Password?</a>
+  </div>
+  <div class="text-center">
+      <a class="small" href="/login">Already have an account? Login!</a>
+  </div>
+
+ </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="px-3 py-4 my-4 text-center">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+ 
+ *, *:before, *:after {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ a {
+    padding: 5px 10px;
+    color: #ffffff; /* White text color */
+    text-decoration: none; /* Remove underline */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+ 
+ .block{
+ 
+   margin:auto;
+   width:80%;
+ }
+ table {
+   background: #B7D0E1;
+   border-radius: 0.25em;
+   margin:auto
+ 
+ }
+ th {
+   border-bottom: 1px solid #fff;
+   color: #1e2949;
+   font-size: 1em;
+   font-weight: 600;
+   padding: 0.5em 2.5em;
+   text-align: left;
+ }
+ td {
+   color: #014055 ;
+   font-weight: 400;
+   padding: 0.65em 2.5em;
+ }
+ 
+ tbody tr {
+   transition: background 0.25s ease;
+ }
+ tbody tr:hover {
+   background:#91AEC4;
+ 
+ }
+ 
+ 
+     </style>
+     <h1  class="display-5 fw-bold my-2">Saved stock price prediction</h1>
+     <br><br><br> 
+     <div class="col-lg-12 mx-auto">
+          {{ table | safe }}
+     </div>
+  
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+        var links = document.querySelectorAll('.show');
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                var col1Value = this.getAttribute('data-value'); // Get the value from the data-value attribute
+     
+                var input = document.createElement("input");
+                input.setAttribute("type", "hidden");
+                input.setAttribute("name", "show");
+                input.setAttribute("value", col1Value);
+                
+                var form = document.createElement("form");
+                form.setAttribute("action", "/showdatasaved");
+                form.setAttribute("method", "POST");
+                form.appendChild(input);
+                
+                document.body.appendChild(form);
+                form.submit();
+            });
+        });
+    });
+
+    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+           var links = document.querySelectorAll('.del');
+           links.forEach(function(link) {
+               link.addEventListener('click', function(event) {
+                   event.preventDefault(); // Prevent default link behavior
+                   var col1Value = this.getAttribute('data-value'); // Get the value from the data-value attribute
+   
+                   var input = document.createElement("input");
+                   input.setAttribute("type", "hidden");
+                   input.setAttribute("name", "del");
+                   input.setAttribute("value", col1Value);
+                   
+                   var form = document.createElement("form");
+                   form.setAttribute("action", "/deletesaved");
+                   form.setAttribute("method", "POST");
+                   form.appendChild(input);
+                   
+                   document.body.appendChild(form);
+                   form.submit();
+               });
+           });
+       });
+</script>
+
+</div>
+
+{% endblock %}
